@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>03 Condition IF</title>
+	<script>
+		/* 1. if 조건문 */
+		var date = new Date();
+		var hour = date.getHours();
+
+		if (hour < 11) {
+			console.log(hour + '시 : 아침 먹을 시간');
+		}
+		else if (hour < 15) {
+			console.log(hour + '시 : 점심 먹을 시간');
+		}
+		else {
+			console.log(hour + '시 : 저녁 먹을 시간');
+		}
+
+		var min = date.getMinutes();
+		console.log(min + '분');
+		var sec = date.getSeconds();
+		console.log(sec + '초');
+		var year1 = date.getFullYear();
+		// getYear() 함수는 원래 년도에서 1990년을 뺀 값을 리턴함
+		// getYear() 함수는 웹 표준에서 제거(Deprecated) 되었음
+		// getFullYear()로 대체되어 사용
+		console.log(year1 + '년');
+
+		var month = date.getMonth();
+		console.log((month + 1) + '월');
+
+		var date1 = date.getDate();
+		console.log(date1 + '일');
+
+		var week = date.getDay();
+		if (week === 1) console.log('월요일');
+		else if (week === 2) console.log('화요일');
+		else if (week === 3) console.log('수요일');
+		else if (week === 4) console.log('목요일');
+		else if (week === 5) console.log('금요일');
+		else if (week === 6) console.log('토요일');
+		else console.log('일요일');
+
+		/* 2. switch 조건문 */
+		/*
+		var input = prompt('숫자를 입력하세요', '숫자') * 1;
+		console.log('input =>', JSON.stringify(input, undefined, 2));
+		if (input >= 0) {
+			switch (input % 2) {
+				case 0:console.log('짝수입니다.'); break;
+				case 1:console.log('홀수입니다.'); break;
+				default:console.log('숫자가 아닙니다.'); break;
+			}
+		} else {
+			console.log("숫자가 아닙니다");
+		}
+		*/
+		
+
+		/* 3. 삼항 연산자 */
+		/*
+		var input = prompt('숫자를 입력하세요', '숫자') * 1;
+		(input > 0) ? console.log("양수") : console.log("음수");
+		if (input >0) console.log("양수");
+		else console.log("음수");
+		*/
+
+		/* 
+			월과 일을 입력받아 요일을 출력하는 코드를 작성하세요.
+			요일은 2020년에 한해서만 계산하되, 2020년 1월1일은 수요일인것을 기준으로 코드를 작성합니다.
+		*/
+
+		var date = new Date()
+			, tm = date.getMonth() + 1
+			, td = date.getDay();
+
+		tm += '';
+		td += '';
+
+		var m = prompt("월을 입력하세요", tm) * 1;
+		var d = prompt("일을 입력하세요", td) * 1;
+
+		var days = 0;
+		switch (m) {
+			case 12: days += 30;
+			case 11: days += 31;
+			case 10: days += 30;
+			case 9: days += 31;
+			case 8: days += 31;
+			case 7: days += 30;
+			case 6: days += 31;
+			case 5: days += 30;
+			case 4: days += 31;
+			case 3: days += 29;
+			case 2: days += 31;
+		}
+		days += d;
+		var s = m + "월 " + d + "일은 ";
+		switch (days % 7) {
+			case 1 : s += "수요일입니다."; break;
+			case 2 : s += "목요일입니다."; break;
+			case 3 : s += "금요일입니다."; break;
+			case 4 : s += "토요일입니다."; break;
+			case 5 : s += "일요일입니다."; break;
+			case 6 : s += "월요일입니다."; break;
+			case 0 : s += "화요일입니다."; break;
+		}
+
+		console.log('s =>', JSON.stringify(s, undefined, 2));
+	</script>
+</head>
+<body>
+</body>
+</html>
