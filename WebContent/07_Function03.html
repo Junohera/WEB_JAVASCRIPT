@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>07 Function</title>
+	<script>
+		// 익명함수 재정의
+		var func = function() {console.log("익명함수1");};
+		func();
+		var func = function() {console.log("익명함수2");};
+		func();
+
+		// 선언적함수 재정의 (불가. 실행시점만 보면 자바의 static메서드처럼 처음에 먼저 읽어들이기 때문에 가장 마지막에 정의된 함수만 실행 )
+		function move() {console.log("move()함수 호출.");};
+		move();
+		function move() {console.log("move()함수 호출1");};
+		move();
+		function move() {console.log("move()함수 호출2");};
+		move();
+
+		// 익명함수는 재정의되어 변수에 할당될때마다 내용이 갱신.
+		// 웹브라우저는 script태그 내부의 내용을 읽기전에 선언적함수를 먼저 읽습니다.
+		// 선언적함수는 스크립트 태그내에서 먼저 읽고 시작되기 때문에 가장 마지막으로 정의된 함수의 내용이 해당 함수 이름으로 정의되고 시작합니다.
+		// 그러므로 위의 코드에서 move()함수 호출시 모두 'move() 함수호출 2'내용을 출력합니다.
+	</script>
+</head>
+<body>
+</body>
+</html>
