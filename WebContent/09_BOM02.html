@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>09 BOM 02</title>
+	<script>
+		var output = '';
+		for (var key in window) {
+			output += '❤️ <small>' + key + ' : </small>' + window[key] + "<br>";
+		}
+		// document.write(output);
+		console.log('output => ', output);
+
+		// - 브라우저의 크기를 화면에 일치하는 방법.
+		//	. 팝업창을 생성하고 전체화면으로 만듬. 이어 1초마다 크기 변환하고 이동해 점점 가운데로 수정.
+
+		var child = window.open('', '', 'width=300, height=200');
+		var width = screen.width;
+		var height = screen.height;
+		child.moveTo(0, 0);
+		child.resizeTo(width, height);
+		
+		var limit = 20;
+		setInterval(a, 50);
+		function a() {
+			child.resizeBy(-20, -20);
+			child.moveBy(10, 10);
+
+			limit--;
+
+			if (limit === 0) {
+				child.close();
+			}
+		}
+		/*
+		function abc() {
+			child.resizeBy(-20, -20);
+			child.moveBy(10, 10);
+		}
+		*/
+	</script>
+</head>
+<body>
+	<!-- <input type="button" value="이동" onclick="abc();"> -->
+</body>
+</html>

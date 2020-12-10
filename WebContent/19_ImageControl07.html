@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>19_ImageControl07</title>
+
+    <style>
+        #base {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px dashed black;
+            overflow: hidden;
+        }
+
+        #view1 {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            left: -600px;
+            top: 0px;
+            border: 1px dashed red;
+            overflow: hidden;
+            transition-duration: 1s;
+            opacity: 1;
+        }
+
+        #view2 {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            left: 0px;
+            top: 0px;
+            border: 1px dashed red;
+            overflow: hidden;
+            transition-duration: 1s;
+            opacity: 1;
+        }
+
+        #view3 {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            left: 600px;
+            top: 0px;
+            border: 1px dashed red;
+            overflow: hidden;
+            transition-duration: 1s;
+            opacity: 1;
+        }
+
+        .imgs {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            left: 600px;
+            top: 0px;
+            border: 1px dashed red;
+            overflow: hidden;
+            transition-duration: 1s;
+            opacity: 0;
+        }
+
+        #btn_left {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 55px;
+            height: 55px;
+            background-image: url(images/ico_movie_171115.png);
+            background-position: 0px -120px;
+            opacity: 0.4;
+        }
+        #btn_right {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 55px;
+            height: 55px;
+            background-image: url(images/ico_movie_171115.png);
+            background-position: -60px -120px;
+            opacity: 0.4;
+        }
+        img {width: 600px;}
+        body {overflow-x: hidden;}
+
+
+    </style>
+
+    <script>
+        var now = 2 // 현재 보이는 그림 번호
+            , left = 1 // 현재 그림 왼쪽 번호
+            , right = 3; // 현재 그림 오른쪽 번호
+
+
+        var Slide = (() => {
+            var width = 600;
+            var limit = 8;
+
+            function move(x) {
+                if (x === "prev") now = (now === 1) ? limit : now-1;
+                else now = (now === limit) ? 1 : now+1;
+
+                left = (now === 1) ? limit : now - 1;
+                right = (now === limit) ? 1 : now + 1;
+
+                var target = "";
+                for (var i = 1; i <= limit; i++) {
+                    target = "view" + i;
+                    if (now === i) document.getElementById(target).style.opacity = "1";
+                    else document.getElementById(target).style.opacity = "0";
+                }
+
+                target = "view" + now;
+                document.getElementById(target).style.left = "0px";
+                target = "view" + left;
+                document.getElementById(target).style.left = "-600px";
+                target = "view" + right;
+                document.getElementById(target).style.left = "600px";
+            }
+
+            return {
+                move: move,
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="base">
+        <div id="view1"><img src="images/Koala.jpg"></div>
+        <div id="view2"><img src="images/Chrysanthemum.jpg"></div>
+        <div id="view3"><img src="images/Desert.jpg"></div>
+        <div id="view4" class="imgs"><img src="images/Hydrangeas.jpg"></div>
+        <div id="view5" class="imgs"><img src="images/Jellyfish.jpg"></div>
+        <div id="view6" class="imgs"><img src="images/Lighthouse.jpg"></div>
+        <div id="view7" class="imgs"><img src="images/Penguins.jpg"></div>
+        <div id="view8" class="imgs"><img src="images/Tulips.jpg"></div>
+
+        <div id="btn_left" onclick="Slide.move('prev');"></div>
+        <div id="btn_right" onclick="Slide.move('next');"></div>
+    </div>
+</body>
+
+</html>

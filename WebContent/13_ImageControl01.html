@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- #은닉 #javascipt #롤링 #이미지 #roll -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>13_ImageControl01</title>
+    <style>
+		#a1 {
+			width: 170px;
+			height: 255px;
+			background-color: black;
+			border: 3px solid black;
+		}
+    </style>
+    <script>
+
+		var Rotate = (() => {
+			var a = 0;
+			var timer = null;
+
+			function rotate_div() {
+				a += 20;
+
+				if (a > 360) a = 20;
+				document.getElementById("a1").style.webkitTransform = 'rotate(' + a + 'deg)';
+			}
+
+			return {
+				on : () => {
+					this.timer = setInterval(rotate_div, 500);
+				},
+				off : () => {
+					window.clearInterval(this.timer);
+					console.log('a =>', JSON.stringify(a, undefined, 2));
+				}
+			}
+		})();
+
+    </script>
+</head>
+
+<body onload="Rotate.on();">
+    <div id="a1" onmouseover="Rotate.off();" onmouseout="Rotate.on();">
+		<img src="images/1.jpg" alt="">
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<!-- #은닉 #javascipt #롤링 #이미지 #roll -->
+<head>
+	<meta charset="UTF-8">
+	<title>12_Rolling_image_ex02</title>
+	<script>
+		var roller = null;
+
+		var ImgRoll = (function() {
+			var num = 0;
+			var roll = null;
+
+			// PUBLIC 
+			return {
+				on : startRoll
+				, off : stopRoll
+			};
+
+			// PRIVATE
+			function rolling() {
+				num++;
+				if (num > 10) num = 1;
+				window.document.getElementById("target").src = "images/" + num + ".jpg";
+			}
+
+			function startRoll() {
+				roll = window.setInterval(rolling, 500);
+			}
+
+			function stopRoll() {
+				window.clearInterval(roll);
+			}
+		})();
+	</script>
+</head>
+<body onload="ImgRoll.on();">
+	<img
+		id="target"
+		src="images/1.jpg"
+		onmouseover="ImgRoll.off();"
+		onmouseout="ImgRoll.on();">
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>17_ImageControl05</title>
+
+    <style>
+        #base {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px dashed black;
+            overflow: hidden;
+        }
+
+        #imgs {
+            position: absolute;
+            width: 4800px;
+            height: 400px;
+            left: 0px;
+            top: 0px;
+            border: 1px dashed red;
+            overflow: hidden;
+            transition-duration: 1s;
+        }
+
+        img {width: 600px;float: left;}
+
+        #remote {
+            position: absolute;
+            width: 200px;
+            height: 50px;
+            border: 1px solid white;
+            bottom: 0px;
+            left: 200px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .btn {
+            position: relative;
+            float: left;
+            width: 14px;
+            height: 14px;
+            margin: 0px;
+            border-radius: 7px;
+            background: white;
+            margin-top: 18px;
+        }
+    </style>
+
+    <script>
+        var Slide = (() => {
+            var width = 600;
+
+            function move(index) {
+                console.log('index =>', JSON.stringify(index, undefined, 2));
+                document.getElementById("imgs").style.webkitTransform = 'translateX(' + -(width*index) + 'px)';
+            }
+
+            return {
+                move : move,
+                on : on,
+            };
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="base">
+        <div id="imgs">
+            <img src="images/Koala.jpg">
+            <img src="images/Chrysanthemum.jpg">
+            <img src="images/Desert.jpg">
+            <img src="images/Hydrangeas.jpg">
+            <img src="images/Jellyfish.jpg">
+            <img src="images/Lighthouse.jpg">
+            <img src="images/Penguins.jpg">
+            <img src="images/Tulips.jpg">
+        </div>
+
+        <div id="remote">
+            <div class="btn" onclick="Slide.move(0);"></div>
+            <div class="btn" onclick="Slide.move(1);"></div>
+            <div class="btn" onclick="Slide.move(2);"></div>
+            <div class="btn" onclick="Slide.move(3);"></div>
+            <div class="btn" onclick="Slide.move(4);"></div>
+            <div class="btn" onclick="Slide.move(5);"></div>
+            <div class="btn" onclick="Slide.move(6);"></div>
+            <div class="btn" onclick="Slide.move(7);"></div>
+        </div>
+    </div>
+</body>
+
+</html>

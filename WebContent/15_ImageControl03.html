@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- #은닉 #javascipt #롤링 #이미지 #roll -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>15_ImageControl03</title>
+    <style>
+        #base {
+            position: relative;
+            width: 170px;
+            height: 255px;
+            border: 1px solid blue;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #imgs {
+            position: absolute;
+            width: 850px;
+            height: 255px;
+            left: 0;
+            top: 0px;
+            border: 1px dashed red;
+        }
+
+        #imgs img {
+            transition: 1s;
+            float: left;
+        }
+    </style>
+    <script>
+        var Slide = (() => {
+            var count = 0;
+            var limit = 5;
+            var timer = null;
+            var width = 170;
+
+            function left() {
+                var dist = 0;
+                
+                count++;
+                
+                if (count === 5) count = 0;
+                dist = -(170 * count);
+
+                for (var i = 1; i <= limit; i++) {
+                    var target = "img" + i;
+                    document.getElementById(target).style.webkitTransform = 'translateX(' + dist + 'px)';
+                }
+            }
+
+            return {
+                on: () => {
+                    this.timer = setInterval(left, 1000);
+                },
+                off: () => {
+                    window.clearInterval(this.timer);
+                }
+            }
+        })();
+    </script>
+</head>
+
+<body onload="Slide.on();">
+    <div id="base" onmouseover="Slide.off();" onmouseout="Slide.on();">
+        <div id="imgs">
+            <img id="img1" src="images/1.jpg">
+            <img id="img2" src="images/2.jpg">
+            <img id="img3" src="images/3.jpg">
+            <img id="img4" src="images/4.jpg">
+            <img id="img5" src="images/5.jpg">
+        </div>
+    </div>
+</body>
+
+</html>

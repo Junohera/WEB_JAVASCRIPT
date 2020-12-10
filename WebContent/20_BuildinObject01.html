@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>20_BuildinObject</title>
+    <script>
+        // 1. Object 객체
+        // - 객체를 문자열로 변환할 때(toString()) 자동 호출.
+        var obj = new Object();
+        console.log(obj);
+        console.log(obj.toString());
+        // - toString() 메서드 재정의
+        var student = {
+            name: "홍길동",
+            grade : "고등학교 1학년",
+            toString: function() {
+                return this.name + " : " + this.grade;
+            }
+        }; // 자바스크립트에서 생성한 student라는 이름의 객체
+        console.log(student);
+        console.log(student.toString);
+
+        // 2. Number 객체
+        // - 생성방법 2가지
+        var numberFromConstructor = new Number(273);
+        var numberFromLiteral = 273;
+
+        console.log(typeof(numberFromConstructor));
+        console.log(numberFromConstructor.toString());
+
+        console.log(typeof(numberFromLiteral));
+        console.log(numberFromLiteral.toString());
+
+        // - Number 생성자 함수의 속성
+        /*
+            MAX_VALUE : 자바스크립트의 숫자가 나타낼 수 있는 최대 숫자.
+            MIN_VALUE : 자바스크립트의 숫자가 나타낼 수 있는 최소 숫자.
+            NEGATIVE_INFINITY : 음의 무한대숫자
+            POSITIVE_INFINITY : 양의 무한대숫자
+            NaN : 자바스크립트 숫자로 나타낼 수 없는 수
+        */
+        console.log(Number.MAX_VALUE);
+        console.log(Number.POSITIVE_INFINITY);
+
+        // 3. String 객체
+        var stringFromLiteral = 'Hello World..!';
+        var stringFromConstructor = new String('Hello World..!');
+        console.log(typeof(stringFromLiteral) + ' : ' + typeof(stringFromConstructor));
+        // - length : 문자열 길이
+        console.log(stringFromLiteral.length);
+        console.log(stringFromConstructor.length);
+        var characters = prompt('비밀번호를 입력하세요', '6글자 이상');
+
+        if (characters.length < 6) console.log("6자 이상");
+        else console.log('입력되었습니다.');
+
+        /*
+            charAt() : 문자열에서 인덱스 번호에 해당하는 문자를 반환
+            indexOf() : 문자열의 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 먼저 일치하는 문자의 위치를 반환. 없으면 -1
+            lastIndexOf() : 문자열의 오른쪽부터 찾을 문자와 일치하는 문자를 찾아 먼저 일치하는 문자의 위치를 반환. 없으면 -1
+            match() : 문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 제일먼저 찾은 문자를 반환. 찾는 문자가 없으면 null반환
+            replace() : 왼쪽부터 바꿀문자와 일치하는 문자를 찾아 제일 먼저 찾은 문자를 새문자로 치환
+            saerch() : 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 제일 먼저 일치하는 문자 위치를 반환
+            slice() :  a개의 문자를 자르고 b번째 이후에 문자를 자른 후 남은 문자를 반환
+            substring() : a부터 b이전 위치까지 문자를 추출하여 반환
+
+            substr() : 문자열에 a위치부터 지정한 문자갯수만큼 문자를 추출반환
+            split() : 구분자를 기준으로 데이터를 나누어 배열반환
+            toLowerCase() : 소문자
+            toUpperCase() : 대문자
+            concat() : 새로운 문자열 이어붙이기 (+)
+            charCodeAt() : 문자의 아스키코드값 반환
+            fromCharCode() : 아스키코드에 해당하는 문자를 반환
+            trim() : 앞뒤에 존재하는 공백을 제거
+        */
+
+        var str = "Hello Thank you good luck to you";
+        document.write(str.charAt(0), "<br>");
+        document.write(str.charAt(16), "<br>");
+        document.write(str.indexOf("you"), "<br>");
+        document.write(str.indexOf("you", 16), "<br>");
+        document.write(str.lastIndexOf("you", 25), "<br>");
+        document.write(str.match("luck"), "<br>");
+        document.write(str.search("you"), "<br>");
+        document.write(str.substr(21, 4), "<br>");
+        document.write(str.substring(6, 12), "<br>");
+        document.write(str.replace("you", "me"), "<br>");
+        document.write(str.toLowerCase(), "<br>");
+        document.write(str.toUpperCase(), "<br>");
+        var arr = str.split(" ");
+        document.write(arr[0], "<br>");
+        document.write(arr[4], "<br>");
+        document.write(str.charCodeAt(1), "<br>");
+        document.write(String.fromCharCode(101), "<br>");
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

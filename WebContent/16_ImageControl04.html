@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- #은닉 #javascipt #롤링 #이미지 #roll -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>16_ImageControl04</title>
+    <style>
+        #base {
+            position: relative;
+            width: 170px;
+            height: 255px;
+            border: 1px solid blue;
+            margin: 0 auto;
+        }
+
+        #imgs {
+            position: absolute;
+            width: 850px;
+            height: 255px;
+            left: 0;
+            top: 0px;
+            border: 1px dashed red;
+        }
+
+        #imgs img {
+            position: absolute;
+            top:0px;
+            left: 0px;
+            transition: 1s;
+            opacity: 0;
+        }
+    </style>
+    <script>
+        var Slide = (() => {
+            var count = 1;
+            var limit = 5;
+            var timer = null;
+            var width = 170;
+
+            function view() {
+                count++;
+                
+                if (count === 6) count = 1;
+
+                for (var i = 1; i <= limit; i++) {
+                    var target = "img" + i;
+                    document.getElementById(target).style.opacity = 0;
+                }
+
+                target = "img" + count;
+                document.getElementById(target).style.opacity = 1;
+            }
+
+            function on() {
+                this.timer = setInterval(view, 1000);
+            }
+
+            return {
+                init : () => {
+                    document.getElementById("img1").style.opacity = 1;
+                    setTimeout(on, 1000);
+                },
+                on: on,
+                off: () => {
+                    window.clearInterval(this.timer);
+                }
+            }
+        })();
+    </script>
+</head>
+
+<body onload="Slide.init();">
+    <div id="base" onmouseover="Slide.off();" onmouseout="Slide.on();">
+        <div id="imgs">
+            <img id="img1" src="images/1.jpg">
+            <img id="img2" src="images/2.jpg">
+            <img id="img3" src="images/3.jpg">
+            <img id="img4" src="images/4.jpg">
+            <img id="img5" src="images/5.jpg">
+        </div>
+    </div>
+</body>
+
+</html>

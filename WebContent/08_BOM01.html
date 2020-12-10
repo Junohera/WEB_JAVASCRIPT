@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>08 BOM 01</title>
+	<script>
+		/*
+			* 브라우저 객체 모델(BOM : Browser Object Model)
+		*/
+		
+		// window.open('https://www.naver.com', 'child', 'width:300, height: 280');	
+
+		// 'https://www.naver.com' - 팝업창에 표시할 페이지 또는 사이트 주소
+		// 'child' - 팝업창의 이름(name)
+		// 'width=600, height=480' 팝업창의 속성들 가로세로 크기 등
+
+		// open 함수의 마지막 위치에 들어가는 팝업창의 구성에 관련된 요소들
+		// 마지막 요소는 " " 또는 ' '안에 여러 요소를 (,)로 구분하여 설정하고자 하는 요소를 모두 넣습니다.
+
+		/*
+			window popup 옵션값
+				- width : 가로길이
+				- height : 세로길이
+				- toolbar=no : 단축도구창(툴바) 표시안함
+				- menubar=no : 메뉴창(메뉴바) 표시안함
+				- location=no : 주소창 표시안함
+				- scrollbars=no : 스크롤바 표시안함
+				- resizable=no : 창변형 하지않음
+				- fullscreen=no : 전체화면 하지않음
+				- channelmode=yes : F11키 기능이랑 같음
+				- left=0 :
+				- top=0 :
+		*/
+		
+		var child = window.open('', '', 'width=600, height=480');
+		// 팝업창을 열고, 그 제어권을 변수에 할당합니다.
+		// http와 https 사이에는 암호화단계가 있어서 스크립트 코드가 실행되지 않습니다.
+
+		function abc() {
+			child.moveBy(100, 100);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" onclick="abc();" value="이동">
+</body>
+</html>

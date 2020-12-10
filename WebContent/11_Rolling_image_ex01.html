@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>11_Rolling_image_ex01</title>
+	<script>
+		/*
+			스크립트 언어로 HTML태그를 접근 조작하는 방법
+			1. form 태그를 사용할 경우 document.${formName}.${tagName}
+			2. form 태그를 사용하지 않을 경우 document.getElementById(id 이름)으로 지목
+		*/
+
+		function changeImg() {
+			document.getElementById("target").src = "images/2.jpg";
+		}
+
+		function recoverImg() {
+			document.getElementById("target").src = "images/1.jpg";
+		}
+	</script>
+</head>
+<body>
+	<img
+		id="target"
+		src="images/1.jpg"
+		onmouseover="changeImg();"
+		onmouseout="recoverImg();"
+	>
+</body>
+</html>
