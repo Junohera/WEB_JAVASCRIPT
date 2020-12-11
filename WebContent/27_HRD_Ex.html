@@ -101,6 +101,8 @@
             tag += "</div>";
         })();
         function moveSelect(nth) {
+            if (auto) return false;
+
             off();
             move(nth);
         };
@@ -117,14 +119,14 @@
         };
         function changeButton() {
             if (auto) {
-                document.getElementById("btnA").style.background = "black";
-                document.getElementById("btnA").style.color = "white";
+                document.getElementById("btnA").setAttribute("class", "btns selected");
             } else {
-                document.getElementById("btnA").style.background = "white";
-                document.getElementById("btnA").style.color = "black";
+                document.getElementById("btnA").setAttribute("class", "btns");
             }
         };
         function moveLeft() {
+            if (auto) return false;
+
             if (now === 0) {
                 now = banners.length - 1;
             } else now--;
@@ -132,6 +134,8 @@
             move(now);
         };
         function moveRight() {
+            if (auto) return false;
+            
             if (now === (banners.length - 1)) {
                 now = 0;
             } else now++;
