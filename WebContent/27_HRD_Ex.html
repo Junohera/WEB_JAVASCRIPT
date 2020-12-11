@@ -128,7 +128,7 @@
             if (auto) return false;
 
             if (now === 0) {
-                now = banners.length - 1;
+                now = 0;
             } else now--;
             off();
             move(now);
@@ -137,7 +137,7 @@
             if (auto) return false;
             
             if (now === (banners.length - 1)) {
-                now = 0;
+                now = banner.length - 1;
             } else now++;
             off();
             move(now);
