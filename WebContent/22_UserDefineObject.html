@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>22_UserDefineObject</title>
+    <script>
+        // 사용자 정의 객체 생성 - 키: 요소
+        var product = {
+            name : "냉장고"
+            , 제조사 : "대한민국"
+        };
+
+        document.write( "name : " + product.name, "<br>");
+        document.write( "제조사 : " + product.제조사, "<br>");
+        document.write( "name : " + product['name'], "<br>");
+        document.write( "제조사 : " + product['제조사'], "<br>");
+
+        var object = {
+            useNumber : 273
+            , useString : "문자열"
+            , useBoolean : true
+            , useArray : [52, 385, 103, 58]
+
+            , method: function() {
+                document.write("useNumber : " + this.useNumber, "<br>");
+                document.write("useString : " + this.useString, "<br>");
+            } // - this키워드 : 자바스ㅡ크립트의 멤버함수에서 멤버 변수에 접근할 때는 this키워드를 생략할 수 없습니다.
+        };
+        object.method();
+
+        var person = {
+            name : "홍길동",
+            eat: function(food) {
+                document.write(this.name + "이/가 " + food + "을/를 먹었습니다.", "<br>");
+            }
+        }
+        person.eat("김밥");
+
+        var product = {
+            name : "Eclipse & Tomcat",
+            price : "FREE",
+            language : "한국어",
+            supportOS : "win32/64",
+            subscription : true,
+        }
+        var output = '';
+        for (var k in product) {
+            output += "X" + k + " : " + product[k] + '<br>';
+        }
+
+        document.write(output);
+        
+        // in - hasOwnProperty보다 간결함
+        // student.hasOwnProperty("이름")
+        // "이름" in student
+        var student = {
+            이름: "홍길동",
+            국어: 92,
+            수학: 98,
+            영어: 96,
+            과학: 98,
+        };
+
+        var output = "<hr>";
+        
+        output += "\"이름\" in student : " + ("이름" in student) + "<br>";
+        output += "\"국어\" in student : " + ("국어" in student) + "<br>";
+        output += "\"수학\" in student : " + ("수학" in student) + "<br>";
+        output += "\"영어\" in student : " + ("영어" in student) + "<br>";
+        output += "\"과학\" in student : " + ("과학" in student) + "<br>";
+        output += "\"성별\" in student : " + ("성별" in student);
+
+        document.write(output);
+
+        // 일반적으로 with 문은 특정 조건에서 작성해야 할 코드의 양을 줄이기 위해 사용
+        // with X
+        document.write("<hr><h3>with X</h3>");
+        var write = "";
+        write +="이름 : " + student.이름 + "<br>";
+        write +="국어 : " + student.국어 + "<br>";
+        write +="수학 : " + student.수학 + "<br>";
+        write +="영어 : " + student.영어 + "<br>";
+        write +="과학 : " + student.과학 + "<br>";
+        document.write(write);
+
+        // with O
+        document.write("<hr><h3>with O</h3>");
+        var write = "";
+        with(student) {
+            write +="이름 : " + 이름 + "<br>";
+            write +="국어 : " + 국어 + "<br>";
+            write +="수학 : " + 수학 + "<br>";
+            write +="영어 : " + 영어 + "<br>";
+            write +="과학 : " + 과학 + "<br>";
+        }
+        document.write(write);
+
+        var student = {};
+        student.이름 = "홍길동";
+        student.취미 = "악기";
+        student.특기 = "프로그래밍";
+        student.장래희망 = "훌륭한 프로그래머";
+        student.toString = function() {
+            var output = "";
+            console.log('this =>', JSON.stringify(this, undefined, 2));
+            for (var key in this) {
+                if (key != 'toString') {
+                    output += key + " : " + this[key] + "<br>";
+                }
+            }
+            return output;
+        };
+
+        document.write(student.toString() + "<br>");
+        document.write(student+"<br>");
+        delete(student.장래희망);
+        document.write(student + "<br>");
+
+        /*
+            생성자 함수
+
+                - new 키워드를 사용해 객체를 생성할 수 있는 변수.
+                - 생성자 함수를 사용한 객체으 ㅣ생성과 출력.
+                - 그냥 함수를 사용해 객체를 리턴하는 방법과 차이가 없는 것이 특징.
+                - 일반함수를 만들되, 내부 변수 및 메서드에 this를 붙여서 생성
+        */
+
+        function Student(name, korean, math, english, science) {
+            this.name = name;
+            this.korean = korean;
+            this.math = math;
+            this.english = english;
+            this.science = science;
+
+            this.getSum = function() {
+                return this.korean +this.math +this.english +this.science;
+            };
+            this.getAvg = function() {
+                return this.getSum() / 4;
+            };
+            this.toString = function() {
+                return this.name + " : " + this.getSum() + ", " + this.getAvg();
+            }
+        }
+
+        var std1 = new Student("홍길동", 85, 98, 74, 56);
+        document.write(std1);
+
+        var stds = [];
+        var obj = {
+            name : "홍길동",
+            korean : 85,
+            math : 98,
+            english : 74,
+            science : 56,
+
+            getSum : function() {
+                return this.korean +this.math +this.english +this.science;
+            },
+            getAvg : function() {
+                return this.getSum() / 4;
+            },
+            toString : function() {
+                return this.name + " : " + this.getSum() + ", " + this.getAvg();
+            },
+        };
+
+        // 생성자 함수를 이용한 방법
+        var obj1 = new Student("홍길동", 85, 90, 95, 100);
+        stds.push(obj1);
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        stds.push(new Student("홍길동", 85, 90, 95, 100));
+        var output = "  이름        총점        평균\n";
+        for (var i in stds) {
+            output += stds[i].toString() + "<br>";
+        }
+        document.write(output);
+        output = "";
+        for (var i in obj1) output += i + ":" + obj1[i] + "<br>";
+        document.write(output);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>26_MemberJoinResult</title>
+    <style>
+
+        body {
+            overflow-x: hidden;
+        }
+        #layer1 {
+            position: relative;
+            width: 100%;
+            height: 145px;
+            border: 1px dashed gray;
+        }
+        .view1 {
+            position: relative;
+            width: 1025px;
+            height: 115px;
+            border: 1px solid red;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .view2 {
+            position: relative;
+            width: 1025px;
+            height: 30px;
+            border: 1px dotted blue;
+            margin: 0 auto;
+        }
+        #imgs {
+            position: absolute;
+            width: 9225px;
+            height: 115px;
+            border: 1px solid blue;
+            top: 0px;
+            left: 0px;
+            transition: 0.4s;
+        }
+        .remote{
+            position: relative;
+            width: 240px;
+            height: 20px;
+            border: 1px dotted blue;
+            float: right;
+            margin-top: 4px;
+        }
+        .btns {
+            position: relative;
+            width: 18px;
+            height: 18px;
+            border: 1px solid black;
+            float: left;
+            font-size: 90%;
+            font-weight: bold;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        .btns:hover {
+            background: black;
+            color: white;
+            cursor: default;
+            user-select: none;
+        }
+
+        #btnL:hover, #btnR:hover {
+            background: black;
+            color: white;
+        }
+
+        .selected {
+            background: black;
+            color: white;
+        }
+    </style>
+    <script>
+        var tag = "";
+        var banners = [
+            "images/H1.png"
+            , "images/H2.png"
+            , "images/H3.png"
+            , "images/H4.png"
+            , "images/H5.png"
+            , "images/H6.png"
+            , "images/H7.png"
+            , "images/H8.png"
+            , "images/H9.png"
+        ];
+        
+        var now = 0;
+        var auto = false;
+        var timer = null;
+
+        (function() {
+            tag += "<div id=\"imgs\">";
+            for (var i = 0; i <= banners.length - 1; i++) {
+                tag += "<img src=\"" + banners[i] + "\">";
+            }
+            tag += "</div>";
+        })();
+        function moveSelect(nth) {
+            off();
+            move(nth);
+        };
+        function move(nth) {
+            now = nth;
+            document.getElementById("imgs").style.left = - (1025 * nth) + "px";
+            changeColor();
+        };
+        function changeColor() {
+            for (var i = 1; i <= banners.length; i++) 
+                document.getElementById("btn" + i).setAttribute("class", "btns");
+
+            document.getElementById("btn" + (now+1)).setAttribute("class", "btns selected");
+        };
+        function changeButton() {
+            if (auto) {
+                document.getElementById("btnA").style.background = "black";
+                document.getElementById("btnA").style.color = "white";
+            } else {
+                document.getElementById("btnA").style.background = "white";
+                document.getElementById("btnA").style.color = "black";
+            }
+        };
+        function moveLeft() {
+            if (now === 0) {
+                now = banners.length - 1;
+            } else now--;
+            off();
+            move(now);
+        };
+        function moveRight() {
+            if (now === (banners.length - 1)) {
+                now = 0;
+            } else now++;
+            off();
+            move(now);
+        };
+        function run() {
+            auto = !auto;
+            auto ? on() : off();
+            changeButton();
+        };
+        function off() {
+            auto = false;
+            changeButton();
+            window.clearInterval(timer);
+        };
+        function on() {
+            timer = setInterval(function() {
+                now++;
+                if (now > (banners.length - 1)) {
+                    now = 0;
+                }
+                move(now);
+            }, 500);
+        };
+        window.onload = function() {
+            changeColor();
+            run();
+        };
+    </script>
+</head>
+<body>
+    <div id="layer1">
+        <div class="view1">
+            <script>
+                document.write(tag);
+            </script>
+        </div>
+        <div class="view2">
+
+            <div class="remote">
+                <div class="btns" id="btnL" onclick="moveLeft();">&lt;</div>
+                <div class="btns" id="btn1" onclick="moveSelect(0);">1</div>
+                <div class="btns" id="btn2" onclick="moveSelect(1);">2</div>
+                <div class="btns" id="btn3" onclick="moveSelect(2);">3</div>
+                <div class="btns" id="btn4" onclick="moveSelect(3);">4</div>
+                <div class="btns" id="btn5" onclick="moveSelect(4);">5</div>
+                <div class="btns" id="btn6" onclick="moveSelect(5);">6</div>
+                <div class="btns" id="btn7" onclick="moveSelect(6);">7</div>
+                <div class="btns" id="btn8" onclick="moveSelect(7);">8</div>
+                <div class="btns" id="btn9" onclick="moveSelect(8);">9</div>
+                <div class="btns" id="btnR" onclick="moveRight();">&gt;</div>
+                <div class="btns" id="btnA" onclick="run();">ㅁ</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

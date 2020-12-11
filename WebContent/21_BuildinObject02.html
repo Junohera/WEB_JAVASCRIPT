@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>21_BuildinObject</title>
+    <script>
+        /*
+            - 수학 Math 객체
+
+            Math.abs()
+            Math.max()
+            Math.min()
+            Math.pow() - 거듭제곱
+            Math.random() - 0~1사이의 난수
+            Math.round() - 첫째자리에서 반올림
+            Math.ceil() - 첫째자리에서 올림
+            Math.floor() - 첫째자리에서 내림
+            Math.sqrt() - 제곱근
+            Math.PI() - 원주율 상수
+        */
+
+        document.write("<h1>1~100 사이의 랜덤 정수</h1>");
+        var num = Math.ceil( Math.random() * 100 );
+        document.write("Math.random이 선택한 숫자 : " + num + "<br>");
+
+        // - 자바스크립트의 함수는 하나의 자료형이미ㅡ로 변수에 저장 가능.
+        // - 따라서 Math객체의 메서들르 변수에 저장해서 함수처럼 쉽게 사용 가능.
+        var findMax = Math.max;
+        document.write("52, 273, 103, 57 중 최대값 : " + findMax(52, 273, 103, 57));
+
+        /*
+            배열 객체
+            - Array 생성 방법 : 4가지
+        */
+        var array1 = [52, 273, 103, 57, 32];
+        var array2 = new Array();
+        var array3 = new Array(10);
+        var array4 = new Array(52, 273, 103, 57, 32);
+
+        /*
+            join
+            reverse
+            sort - 오름차순으로 정렬
+            slice
+            splice - 배열객체의 지정 데이터를 삭제하고, 그 구간에 새 데이터를 삽입
+            concat - 배열간 결합
+            pop - 마지막인덱스 삭제
+            push - 마지막 인덱스 추가
+            shift - 첫번째인덱스 삭제
+            unshift - 첫번째인덱스 추가
+            length
+        */
+
+        var arr_1 = ["사당", "교대", "방배", "강남",];
+        var arr_2 = ["신사", "압구정", "옥수",];
+
+        document.write("<br><br>");
+        var result = arr_1.join("-");
+        document.write("arr_1.join('-') : " + result, "<br>");
+        var result = arr_1.concat("바보");
+        document.write("arr_1.concat(\"바보\") : " + result, "<br>");
+        var result = arr_1.concat(arr_2);
+        document.write("arr_1.concat(arr_2)) : " + result, "<br>");
+        var result = arr_1.slice(1, 3);
+        document.write("arr_1.slice(1, 3) : " + result, "<br>"); // 1번째~3(-1)번째
+        var result = arr_1.sort(); // 오름차순
+        document.write("arr_1.sort() : " + result, "<br>");
+        var result = arr_1.reverse(); // 내림차순
+        document.write("arr_1.reverse() : " + result, "<br>");
+
+        var greenArr = ["교대","방배","강남",];
+        var yellowArr = ["미금","정자","수서",];
+        document.write(greenArr, "<br>");
+        var result = greenArr.splice(2, 1, "서초", "역삼", "선릉", "잠실"); // 2번째부터 1개 삭제 후, 뒤 원소들을 추가
+        document.write("greenArr.splice(2, 1, \"서초\", \"역삼\", \"선릉\", \"잠실\") : " + result, "<br>");
+        document.write(greenArr, "<br>");
+        var result = greenArr.splice(2, 5, [0, 1]); // 2번째부터 1개 추출 후, 뒤 원소들을 추가
+        document.write("greenArr.splice(2, 1, [0, 1]) : " + result, "<br>");
+        document.write(greenArr, "<br>");
+
+        var data1 = yellowArr.pop();
+        document.write("data1 : " + data1, "<br>");
+        document.write("yellowArr.pop() : " + yellowArr, "<br>");
+        var data2 = yellowArr.shift();
+        document.write("data2 : " + data2, "<br>");
+        document.write("yellowArr.shift() : " + yellowArr, "<br>");
+        yellowArr.push(data2);
+        document.write("document.push(data2) : " + yellowArr, "<br>");
+        yellowArr.unshift(data1);
+        document.write("yellowArr.unshift(data1) : " + yellowArr, "<br>");
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
